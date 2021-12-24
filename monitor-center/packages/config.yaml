@@ -1,0 +1,11 @@
+# Futong-Itgo-Monitor-Agent Global Configuration
+
+# logger configuration
+log:
+  level: "debug"
+  stdout: true
+  logfile: "run.log"
+  logMaxDays: 7
+
+confWeb:
+  getConfUrl : "http://172.16.31.20:8001/api/conf"

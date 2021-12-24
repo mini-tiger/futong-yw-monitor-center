@@ -1,0 +1,4 @@
+/monitor-agent/ft-agent
+*.log
+*.out
+*.xlsx

@@ -1,0 +1,131 @@
+groups:
+- name: 09c11e42-4f7b-d483-63fe-26abc172258c
+  rules:
+  - alert: cpu使用率 警告
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}: cpu使用率 > 70'
+    expr: ' usedPercent{job="cpu",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"}  >
+      70'
+    for: 2m
+    labels:
+      severity: warn
+      term: node
+  - alert: cpu使用率 严重
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}: cpu使用率 > 85'
+    expr: ' usedPercent{job="cpu",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"} >
+      85'
+    for: 2m
+    labels:
+      severity: critical
+      term: node
+  - alert: 内存使用率 警告
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}: 内存使用率 > 70'
+    expr: ' usedPercent{job="mem",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"} >
+      70'
+    for: 2m
+    labels:
+      severity: warn
+      term: node
+  - alert: 内存使用率 严重
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}: 内存使用率 > 85'
+    expr: ' usedPercent{job="mem",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"} >
+      85'
+    for: 2m
+    labels:
+      severity: critical
+      term: node
+  - alert: 硬盘使用率 警告
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}  Path: {{$labels.path}}
+        硬盘使用率 > 70'
+    expr: ' usedPercent{job="disk",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"}
+      > 70'
+    for: 2m
+    labels:
+      severity: warn
+      term: node
+  - alert: 硬盘使用率 严重
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}  Path: {{$labels.path}}
+        硬盘使用率 > 85'
+    expr: ' usedPercent{job="disk",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"}
+      > 85'
+    for: 2m
+    labels:
+      severity: critical
+      term: node
+  - alert: 网络出流量 警告
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}  Net: {{$labels.name}}
+        网络出流量 > 26214400'
+    expr: ' bytessentps{job="net",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"} >
+      26214400'
+    for: 2m
+    labels:
+      severity: warn
+      term: node
+  - alert: 网络出流量 严重
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}  Net: {{$labels.name}}
+        网络出流量 > 36700160'
+    expr: ' bytessentps{job="net",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"} >
+      36700160'
+    for: 2m
+    labels:
+      severity: critical
+      term: node
+  - alert: 网络入流量 警告
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}  Net: {{$labels.name}}
+        网络入流量 > 26214400'
+    expr: ' bytesrecvps{job="net",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"} >
+      26214400'
+    for: 2m
+    labels:
+      severity: warn
+      term: node
+  - alert: 网络入流量 严重
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}  Net: {{$labels.name}}
+        网络入流量 > 36700160'
+    expr: ' bytesrecvps{job="net",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"} >
+      36700160'
+    for: 2m
+    labels:
+      severity: critical
+      term: node
+  - alert: docker进程数据 警告
+    annotations:
+      description: '{{$labels.instance}}: {{$labels.job}}  (current value is:{{ $value
+        }})'
+      summary: 'IP:{{$labels.instance}} HOSTID:{{$labels.hostid}}  Net: {{$labels.name}}
+        docker进程数据 < 10'
+    expr: ' docker_process_num{job="shell",hostid="09c11e42-4f7b-d483-63fe-26abc172258c"}
+      < 10'
+    for: 2m
+    labels:
+      severity: warn
+      term: node

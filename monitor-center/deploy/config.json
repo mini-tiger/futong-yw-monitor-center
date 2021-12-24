@@ -1,0 +1,18 @@
+{
+  "mysqlDsn": "root:FuTongde1gesjk@tcp(ftcloud-mysql:3306)/itgo_monitor?charset=utf8&parseTime=True&loc=Local",
+  "level": "debug",
+  "stdout": true,
+  "logfile": "run.log",
+  "logMaxDays": 7,
+  "es_server": ["http://ftcloud-es:9200"],
+  "port": 8001,
+  "delPushGatewayMinute": 10,
+  "delDirtyDataMinute": 10,
+  "getConfUrl" : "http://172.16.71.31:8001/api/conf",
+  "pushGateway": [
+    "http://pushgateway1:9091",
+    "http://pushgateway2:9091"
+  ],
+  "prometheus": ["http://ftcloud_prometheus1:9090","http://ftcloud_prometheus2:9090"],
+  "alert_manager_rules_dir": "/home/monitor/alertmanager"
+}

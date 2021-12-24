@@ -1,0 +1,19 @@
+futong-yw-monitor-center:
+  deploy:
+    replicas: 1
+    restart_policy:
+      condition: any
+    placement:
+      constraints:
+        - node.hostname==swarm1
+  environment:
+    - product=true
+  image: '172.16.71.10:15005/cmp/yw/futong-yw-monitor-center:v1.6.5'
+  ports:
+    - 8001:8001
+  volumes:
+    - /etc/prometheus/alertmanager:/home/monitor/alertmanager:rw,Z
+    - /etc/ftcloud/yw/futong-yw-monitor-center/PushConfig.json:/home/monitor/PushConfig.json
+    - /etc/ftcloud/yw/futong-yw-monitor-center/config.json:/home/monitor/config.json
+    - /etc/ftcloud/yw/futong-yw-monitor-center/packages:/home/monitor/packages
+    - /var/log/ftcloud/yw/futong-yw-monitor-center:/home/monitor/logs:rw,Z

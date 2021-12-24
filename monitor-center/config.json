@@ -1,0 +1,19 @@
+{
+  "mysqlDsn": "root:FuTongde1gesjk@tcp(172.16.71.20:3306)/itgo_monitor?charset=utf8&parseTime=True&loc=Local",
+  "level": "debug",
+  "stdout": true,
+  "logfile": "run.log",
+  "logMaxDays": 7,
+  "es_server": ["http://172.16.71.20:9200"],
+  "port": 8001,
+  "delPushGatewayMinute": 10,
+  "delDirtyDataMinute": 10,
+  "getConfUrl" : "http://172.16.8.145:8001/api/conf",
+  "pushGateway": [
+    "http://172.16.71.31:19091",
+    "http://172.16.71.32:19091",
+    "http://172.16.71.31:19092"
+  ],
+  "prometheus": ["http://172.16.71.20:9090"],
+  "alert_manager_rules_dir": "/home/go/futong-yw-monitor-center/monitor-center/alertmanager"
+}

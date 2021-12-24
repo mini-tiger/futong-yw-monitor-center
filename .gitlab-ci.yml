@@ -1,0 +1,26 @@
+stages:
+  - build
+
+variables:
+  IMAGE_NAME: 172.16.71.10:15005/cmp/yw/futong-yw-monitor-center
+  tag: latest
+  host: dev
+  app: monitor-center
+
+job1:
+  stage: build
+  tags:
+    - itgo_monitor_center
+  only:
+    - web
+  script:
+    - env
+    - echo "branch=$CI_COMMIT_BRANCH host=$host tag=$tag"
+    - echo $CI_PROJECT_DIR
+    - docker run --rm -i -v /root/$CI_PROJECT_DIR:/opt  -w /opt 172.16.71.10:15005/public/golang:1-alpine-builder-cache sh ./$app/build.sh
+    - echo "LABEL author_email=$GITLAB_USER_EMAIL" >> Dockerfile
+    - echo "LABEL commit_sha=$CI_COMMIT_SHA" >> Dockerfile
+    - docker build -t $IMAGE_NAME:$tag -f $app/Dockerfile . --no-cache
+    - docker push $IMAGE_NAME:$tag
+    - docker rmi $IMAGE_NAME:$tag
+    - ssh $host ftupdate futong-yw-monitor-center $tag

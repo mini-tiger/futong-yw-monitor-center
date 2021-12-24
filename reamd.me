@@ -1,0 +1,7 @@
+1.agent 向服务端请求pushconfig 配置 ，根据配置中 时间间隔 采集数据 上传pushgateway
+    服务端的pushconfig配置根据 接口上传 后保存，重启后 丢失
+
+
+2. agent 打包时 包含版本信息  定时与服务端比较版本信息,根据服务端返回的信息 selfupdate
+服务端的版本信息写保存 没有写
+GO_ENABLE=0 GOOS=linux GOARCH=amd64 go build -ldflags='-X main.version=20211121 -s -w'  -a -o ft-agent main.go
